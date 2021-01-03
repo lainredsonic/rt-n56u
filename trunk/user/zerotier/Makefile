@@ -2,7 +2,7 @@ SRC_NAME = ZeroTierOne-1.6.2
 THISDIR = $(shell pwd)
 FLAGS := DEFS=""
 CFLAGS := -O3 -ffunction-sections -fdata-sections
-LDFLAGS := -pie,-Wl,--gc-sections,--as-needed
+LDFLAGS := -Wl,--gc-sections,--as-needed
 
 all: extract_test
 	$(MAKE) -j$(HOST_NCPU) -C $(SRC_NAME)
@@ -10,7 +10,7 @@ all: extract_test
 extract_test:
 	( if [ ! -d $(SRC_NAME) ]; then \
 		tar xf $(SRC_NAME).tar.gz ; \
-		##*patch -d $(SRC_NAME) -p1 -i ../0002-remove-pie.patch; \
+		patch -d $(SRC_NAME) -p1 -i ../0002-remove-pie.patch; \
 	fi )
 config_test:
 
