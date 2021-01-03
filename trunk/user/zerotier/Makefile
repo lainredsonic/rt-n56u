@@ -2,7 +2,7 @@ SRC_NAME = ZeroTierOne-1.6.2
 THISDIR = $(shell pwd)
 FLAGS := DEFS=""
 CFLAGS := -O3 -ffunction-sections -fdata-sections
-LDFLAGS := -Wl,--gc-sections,--as-needed
+LDFLAGS := -pie,-Wl,--gc-sections,--as-needed
 
 all: extract_test
 	$(MAKE) -j$(HOST_NCPU) -C $(SRC_NAME)
