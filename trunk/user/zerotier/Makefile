@@ -10,7 +10,13 @@ all: extract_test
 extract_test:
 	( if [ ! -d $(SRC_NAME) ]; then \
 		tar xf $(SRC_NAME).tar.gz ; \
+		patch -d $(SRC_NAME) -p1 -i ../0001-find-miniupnpc.h-in-staging-directory.patch; \
 		patch -d $(SRC_NAME) -p1 -i ../0002-remove-pie.patch; \
+		patch -d $(SRC_NAME) -p1 -i ../0003-remove-arm32-conservative-CFLAGS.patch; \
+		patch -d $(SRC_NAME) -p1 -i ../0004-accept-external-linker-flags.patch; \
+		patch -d $(SRC_NAME) -p1 -i ../0005-link-natpmp.patch; \
+		patch -d $(SRC_NAME) -p1 -i ../0007-add-cerrno-header-for-str-errno.patch; \
+		patch -d $(SRC_NAME) -p1 -i ../0008-fix-compilation-for-arm_cortex-a7-neon.patch; \
 	fi )
 config_test:
 
